@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bigcode A.Ş. - Yazılımda Gelecek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="logo">
+                &lt;/Bigcode&gt; <span class="as">A.Ş.</span>
+            </h1>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#hero">Ana Sayfa</a></li>
+                    <li><a href="#biz-kimiz">Biz Kimiz</a></li>
+                    <li><a href="#projeler">Projeler</a></li>
+                    <li><a href="#calisanlar">Ekip</a></li>
+                    <li><a href="#haberler">Haberler</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </nav>
+            <div class="header-utils">
+                <button id="darkModeToggle" class="dark-mode-button">
+                    <span class="material-icons">dark_mode</span>
+                    Karanlık Mod (Demo)
+                </button>
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h2 class="hero-title">Yazılımda Geleceği <span class="gradient-text">Şekillendiriyoruz.</span></h2>
+                <p>Yenilikçi, hızlı ve güvenilir çözümlerle tanışın.</p>
+                <a href="#projeler" class="cta-button">Projelerimizi Görün</a>
+            </div>
+        </section>
+
+        <section id="biz-kimiz">
+            <div class="container biz-kimiz-layout">
+                <div class="biz-kimiz-image">
+                    <img src="https://via.placeholder.com/450x350/007BFF/FFFFFF?text=Bigcode+Vizyon" alt="Bizim Vizyonumuz">
+                </div>
+                <div class="biz-kimiz-content">
+                    <h2>Biz Kimiz</h2>
+                    <p>
+                        Az imkanlar ile çok şeyler başaran ve daha da çok şeyler başarmayı hedefleyen,
+                        her konuda günlük ihtiyaçları azaltacak ve sorunları çözecek şekilde kodlama yapan,
+                        her gün daha da gelişen bir yazılım şirketiyiz. 2025 yılının Kasım ayında kurulduk.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projeler" class="bg-light">
+            <div class="container">
+                <h2>Öne Çıkan Proje</h2>
+                <div class="card-grid">
+                    <div class="card project-card">
+                        <h3>Proje: ALESTA AI</h3>
+                        <p>Geleceğin yapay zeka asistanı. Öğrenen, uyum sağlayan ve problemleri çözen akıllı bir sistem.</p>
+                        <a href="#" class="card-link">Detayları İncele</a>
+                    </div>
+                    <div class="card project-card-coming-soon">
+                        <h3>Mobil Çözümler</h3>
+                        <p>Yakında...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calisanlar">
+            <div class="container">
+                <h2>Ekibimiz</h2>
+                <div class="card-grid">
+                    <div class="card team-card">
+                        <img src="https://via.placeholder.com/150/007BFF/FFFFFF?text=A" alt="Arel Ö. Fotoğrafı">
+                        <h4>Arel Ö.</h4>
+                        <p class="team-title">CEO & Yazılım Departmanı Başkanı</p>
+                    </div>
+                    <div class="card team-card">
+                        <img src="https://via.placeholder.com/150/EEEEEE/333333?text=?" alt="Çalışan Fotoğrafı">
+                        <h4>Ekibe Katıl</h4>
+                        <p class="team-title">Sizi de aramızda görmek isteriz.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="haberler" class="bg-light">
+             <div class="container">
+                <h2>Haberler & Duyurular</h2>
+                <div class="news-item">
+                    <h3>Alesta AI Kapalı Beta Kodları Yayınlandı!</h3>
+                    <p>Uzun süredir üzerinde çalıştığımız ALESTA AI projemizin kapalı beta sürümüne ait davet kodları, seçili kullanıcılara gönderilmeye başlandı. Geri bildirimlerinizi heyecanla bekliyoruz!</p>
+                    <span class="news-date">17 Kasım 2025</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="iletisim">
+            <div class="container">
+                <h2>Bize Ulaşın</h2>
+                <p class="section-subtitle">Fikirleriniz, sorularınız veya işbirlikleri için buradayız.</p>
+                
+                <form class="contact-form" action="https://formspree.io/f/meovdjob" method="POST">
+                    <input type="text" name="name" placeholder="Adınız Soyadınız" required>
+                    <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+                    <textarea name="message" placeholder="Mesajınız..." rows="5" required></textarea>
+                    <button type="submit" class="cta-button">Mesajı Gönder</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Bigcode Anonim Şirketi. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
