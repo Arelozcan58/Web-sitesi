@@ -3,137 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bigcode A.Ş. - Yazılımda Gelecek</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Sana Bir Soru Soracağım...</title>
+    <style>
+        /* --- Renk Tanımlamaları --- */
+        :root {
+            --dark-blue: #191970; /* Koyu Lacivert */
+            --lilac: #C8A2C8; /* Açık Lila */
+            --text-color: #FFFFFF; /* Beyaz */
+            --accent-color: #9370DB; /* Orta Mor/Menekşe (Başarı Arka Planı) */
+        }
+
+        /* --- Genel Stil ve Esnek Düzen --- */
+        body {
+            background-color: var(--dark-blue);
+            color: var(--text-color);
+            font-family: 'Consolas', 'Courier New', monospace; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px; /* Kenarlarda boşluk bırakarak sığmama riskini azaltır */
+            box-sizing: border-box; /* Padding'in genişliğe dahil olmasını sağlar */
+            overflow: hidden; /* Dikey kaydırmayı engeller */
+            text-align: center;
+            transition: background-color 1s ease-in-out;
+        }
+
+        /* --- Metin ve Yazım Efekti Stili (Optimize Edilmiş) --- */
+        #text-container {
+            margin-bottom: 5vh; /* Dikey alanda esnek boşluk */
+            min-height: 50px;
+            width: 90%; /* Genişliğin %90'ını kapla */
+            max-width: 800px; /* Çok büyük ekranlarda aşırı büyümesini engeller */
+        }
+
+        .text-line {
+            /* Font boyutunu viewport (görüntü alanı) genişliğine göre ayarla */
+            font-size: 5vw; /* Örn: Ekran genişliğinin %5'i kadar */
+            line-height: 1.2;
+            font-weight: normal;
+            margin: 10px 0;
+            color: var(--lilac);
+            white-space: pre; 
+            overflow: hidden;
+            /* Küçük ekranlar için minimum font boyutu */
+            min-font-size: 20px; 
+        }
+        
+        /* Büyük ekranlar için font boyutunu küçült */
+        @media (min-width: 600px) {
+            .text-line {
+                font-size: 30px; 
+            }
+        }
+        
+        /* İmleç stili ve animasyonu (değişmedi) */
+        .text-line.typing::after {
+            content: '';
+            border-right: .15em solid var(--text-color);
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text-color); }
+        }
+
+        #question {
+            /* Font boyutunu viewport (görüntü alanı) genişliğine göre ayarla */
+            font-size: 7vw; 
+            font-weight: bold;
+            color: var(--text-color);
+            margin-top: 3vh;
+            display: none;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        
+        /* Büyük ekranlar için soru font boyutunu küçült */
+        @media (min-width: 600px) {
+            #question {
+                font-size: 4em; 
+            }
+        }
+
+        /* --- Buton Stilleri (Sadece Marjinler Güncellendi) --- */
+        #buttons-container {
+            margin-top: 5vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap; /* Butonların küçük ekranda alt alta geçmesini sağlar */
+        }
+
+        .btn {
+            padding: 15px 30px;
+            margin: 10px 15px; /* Küçük ekranda dikey boşluk ekledik */
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease-out, opacity 0.5s, background-color 0.3s;
+            white-space: nowrap; /* Buton metninin tek satırda kalmasını sağlar */
+        }
+
+        #yes-btn {
+            background-color: #2E8B57; 
+            color: var(--text-color);
+            box-shadow: 0 0 15px var(--lilac);
+            transform: scale(1); 
+        }
+
+        #no-btn {
+            background-color: #B22222; 
+            color: var(--text-color);
+        }
+        
+        /* "Evet" cevabı sonrası tam ekran mesajı */
+        .final-message {
+            font-size: 8vw !important; /* Maksimum büyüklük */
+        }
+        @media (min-width: 600px) {
+            .final-message {
+                font-size: 6em !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1 class="logo">
-                &lt;/Bigcode&gt; <span class="as">A.Ş.</span>
-            </h1>
-            <nav class="nav-links">
-                <ul>
-                    <li><a href="#hero">Ana Sayfa</a></li>
-                    <li><a href="#biz-kimiz">Biz Kimiz</a></li>
-                    <li><a href="#projeler">Projeler</a></li>
-                    <li><a href="#calisanlar">Ekip</a></li>
-                    <li><a href="#haberler">Haberler</a></li>
-                    <li><a href="#iletisim">İletişim</a></li>
-                </ul>
-            </nav>
-            <div class="header-utils">
-                <button id="darkModeToggle" class="dark-mode-button">
-                    <span class="material-icons">dark_mode</span>
-                    Karanlık Mod (Demo)
-                </button>
-                <div class="hamburger-menu">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-            </div>
+    <div id="text-container">
         </div>
-    </header>
+    
+    <div id="question">BENİMLE SEVGİLİ OLUR MUSUN?</div>
 
-    <main>
-        <section id="hero">
-            <div class="container">
-                <h2 class="hero-title">Yazılımda Geleceği <span class="gradient-text">Şekillendiriyoruz.</span></h2>
-                <p>Yenilikçi, hızlı ve güvenilir çözümlerle tanışın.</p>
-                <a href="#projeler" class="cta-button">Projelerimizi Görün</a>
-            </div>
-        </section>
+    <div id="buttons-container" style="display: none;">
+        <button id="yes-btn" class="btn">Evet</button>
+        <button id="no-btn" class="btn">Hayır</button>
+    </div>
 
-        <section id="biz-kimiz">
-            <div class="container biz-kimiz-layout">
-                <div class="biz-kimiz-image">
-                    <img src="https://via.placeholder.com/450x350/007BFF/FFFFFF?text=Bigcode+Vizyon" alt="Bizim Vizyonumuz">
-                </div>
-                <div class="biz-kimiz-content">
-                    <h2>Biz Kimiz</h2>
-                    <p>
-                        Az imkanlar ile çok şeyler başaran ve daha da çok şeyler başarmayı hedefleyen,
-                        her konuda günlük ihtiyaçları azaltacak ve sorunları çözecek şekilde kodlama yapan,
-                        her gün daha da gelişen bir yazılım şirketiyiz. 2025 yılının Kasım ayında kurulduk.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <script>
+        const typedTexts = [
+            "Merhaba Ela'm.",
+            "Nasılsın. Umarım iyisindir.",
+            "Sana bir soru soracağım...",
+        ];
+        
+        const textContainer = document.getElementById('text-container');
+        const questionText = document.getElementById('question');
+        const buttonsContainer = document.getElementById('buttons-container');
+        const yesButton = document.getElementById('yes-btn');
+        const noButton = document.getElementById('no-btn');
 
-        <section id="projeler" class="bg-light">
-            <div class="container">
-                <h2>Öne Çıkan Proje</h2>
-                <div class="card-grid">
-                    <div class="card project-card">
-                        <h3>Proje: ALESTA AI</h3>
-                        <p>Geleceğin yapay zeka asistanı. Öğrenen, uyum sağlayan ve problemleri çözen akıllı bir sistem.</p>
-                        <a href="#" class="card-link">Detayları İncele</a>
-                    </div>
-                    <div class="card project-card-coming-soon">
-                        <h3>Mobil Çözümler</h3>
-                        <p>Yakında...</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        let noCount = 0;
+        const maxNoClicks = 5;
 
-        <section id="calisanlar">
-            <div class="container">
-                <h2>Ekibimiz</h2>
-                <div class="card-grid">
-                    <div class="card team-card">
-                        <img src="https://via.placeholder.com/150/007BFF/FFFFFF?text=A" alt="Arel Ö. Fotoğrafı">
-                        <h4>Arel Ö.</h4>
-                        <p class="team-title">CEO & Yazılım Departmanı Başkanı</p>
-                    </div>
-                    <div class="card team-card">
-                        <img src="https://via.placeholder.com/150/EEEEEE/333333?text=?" alt="Çalışan Fotoğrafı">
-                        <h4>Ekibe Katıl</h4>
-                        <p class="team-title">Sizi de aramızda görmek isteriz.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        // --- Yazım Makinesi Animasyonu ---
+        function typeWriter(text, callback) {
+            let i = 0;
+            textContainer.innerHTML = ''; 
 
-        <section id="haberler" class="bg-light">
-             <div class="container">
-                <h2>Haberler & Duyurular</h2>
-                <div class="news-item">
-                    <h3>Alesta AI Kapalı Beta Kodları Yayınlandı!</h3>
-                    <p>Uzun süredir üzerinde çalıştığımız ALESTA AI projemizin kapalı beta sürümüne ait davet kodları, seçili kullanıcılara gönderilmeye başlandı. Geri bildirimlerinizi heyecanla bekliyoruz!</p>
-                    <span class="news-date">17 Kasım 2025</span>
-                </div>
-            </div>
-        </section>
+            const element = document.createElement('div');
+            element.className = 'text-line typing'; 
+            textContainer.appendChild(element);
+            
+            const typingInterval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    element.classList.remove('typing'); 
+                    if (callback) {
+                        setTimeout(callback, 1200); 
+                    }
+                }
+            }, 70); 
+        }
 
-        <section id="iletisim">
-            <div class="container">
-                <h2>Bize Ulaşın</h2>
-                <p class="section-subtitle">Fikirleriniz, sorularınız veya işbirlikleri için buradayız.</p>
-                
-                <form class="contact-form" action="https://formspree.io/f/meovdjob" method="POST">
-                    <input type="text" name="name" placeholder="Adınız Soyadınız" required>
-                    <input type="email" name="email" placeholder="E-posta Adresiniz" required>
-                    <textarea name="message" placeholder="Mesajınız..." rows="5" required></textarea>
-                    <button type="submit" class="cta-button">Mesajı Gönder</button>
-                </form>
-            </div>
-        </section>
+        // --- Metin Akışı ve Silme İşlemi ---
+        function showTextSequence(index) {
+            if (index < typedTexts.length) {
+                typeWriter(typedTexts[index], () => {
+                    showTextSequence(index + 1);
+                });
+            } else {
+                showQuestionAndButtons();
+            }
+        }
 
-    </main>
+        function showQuestionAndButtons() {
+            textContainer.innerHTML = ''; 
+           
+            questionText.style.display = 'block';
+            buttonsContainer.style.display = 'flex'; 
+            
+            setTimeout(() => {
+                questionText.style.opacity = 1;
+            }, 50);
+        }
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Bigcode Anonim Şirketi. Tüm hakları saklıdır.</p>
-        </div>
-    </footer>
+        // --- Buton Etkileşimleri ---
+        
+        // "Hayır" Butonu
+        noButton.addEventListener('click', () => {
+            noCount++;
 
-    <script src="script.js"></script>
+            let scaleFactor = 1 + (noCount * 0.4); 
+            yesButton.style.transform = `scale(${scaleFactor})`;
+
+            if (noCount >= maxNoClicks) {
+                noButton.style.opacity = 0;
+                noButton.style.pointerEvents = 'none'; 
+                noButton.style.margin = '0'; 
+            }
+        });
+
+        // "Evet" Butonu
+        yesButton.addEventListener('click', () => {
+            document.body.innerHTML = `
+                <h1 class="final-message" style="color: var(--lilac);">
+                    SENİ ÇOK SEVİYORUM ELA'M!
+                </h1>
+                <p style="color: var(--text-color); font-size: 1.5em; margin-top: 20px;">
+                    Bu hayatta sana "Evet" demekten daha güzel ne olabilir ki?
+                </p>
+            `;
+            document.body.style.backgroundColor = 'var(--accent-color)'; 
+        });
+
+        // --- Başlatma Kodu ---
+        document.addEventListener('DOMContentLoaded', () => {
+            showTextSequence(0);
+        });
+    </script>
 </body>
-</html>
+    </html>
+    
